@@ -33,8 +33,8 @@ const mockData = [
     },
 ];
 
-const TransactionStateContext = createContext();
-const TransactionDispatchContext = createContext();
+export const TransactionStateContext = createContext();
+export const TransactionDispatchContext = createContext();
 
 const transactionsReducer = (state, action) => {
     switch (action.type) {
