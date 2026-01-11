@@ -2,6 +2,7 @@ import "./Home.css";
 import {useContext} from "react";
 import {TransactionStateContext} from "../App";
 import TransactionItem from "../components/TransactionItem";
+import {NavLink} from "react-router-dom";
 
 export default function Home() {
     const transactions = useContext(TransactionStateContext);
@@ -13,7 +14,7 @@ export default function Home() {
         <div className="Home">
             <header>
                 <h1>한입 가계부</h1>
-                <div className="new_button">+ 작성하기</div>
+                <NavLink className="new_button" to="/new-transaction">+ 작성하기</NavLink>
             </header>
             <main className="transaction_list">
                 {sortedTransactions.map((transaction) => (
