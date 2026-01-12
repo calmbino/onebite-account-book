@@ -1,34 +1,55 @@
-import "./TransactionEditor.css";
 import {useContext, useState} from "react";
 import {TransactionDispatchContext} from "../App";
+import "./TransactionEditor.css";
 import {useNavigate} from "react-router-dom";
 
 const categories = ["🍚 식비", "💧 구독", "🏠 생활", "🏢 급여", "💰 금융"];
 
-export default function TransactionEditor() {
-    const [transaction, setTransaction] = useState({
-        name: "",
-        amount: "",
-        category: categories[0],
-        date: new Date().toISOString().slice(0, 10),
-    })
+export default function TransactionEditor({type, initData}) {
+    const {onCreateTransaction, onUpdateTransaction} = useContext(
+        TransactionDispatchContext
+    );
 
-    const { onCreateTransaction } = useContext(TransactionDispatchContext);
     const navigate = useNavigate();
+
+    const [transaction, setTransaction] = useState(() => {
+        if (type === "EDIT" && initData) {
+            return {
+                ...initData,
+                date: new Date(initData.date).toISOString().slice(0, 10),
+            };
+        }
+        return {
+            name: "",
+            amount: "",
+            type: "expense",
+            category: categories[0],
+            date: new Date().toISOString().slice(0, 10),
+        };
+    });
 
     const onSubmit = () => {
         if (!transaction.name || !transaction.amount || !transaction.category || !transaction.date) {
             return;
         }
-
-        onCreateTransaction(
-            transaction.name,
-            transaction.amount,
-            transaction.type,
-            transaction.category,
-            transaction.date
-        );
-
+        if (type === "CREATE") {
+            onCreateTransaction(
+                transaction.name,
+                transaction.amount,
+                transaction.type,
+                transaction.category,
+                transaction.date
+            );
+        } else {
+            onUpdateTransaction(
+                initData.id,
+                transaction.name,
+                transaction.amount,
+                transaction.type,
+                transaction.category,
+                transaction.date
+            );
+        }
         navigate("/", { replace: true });
     };
 
@@ -40,7 +61,7 @@ export default function TransactionEditor() {
         <div className="TransactionEditor">
             <div>
                 <div className="description">분류</div>
-                <select onChange={(e) => setTransaction({ ...transaction, type: e.target.value })}>
+                <select onChange={(e) => setTransaction({...transaction, type: e.target.value})}>
                     <option value="expense">지출</option>
                     <option value="income">수입</option>
                 </select>
@@ -52,7 +73,7 @@ export default function TransactionEditor() {
                     id="name"
                     placeholder="지출 & 수입 이름을 입력하세요 ..."
                     value={transaction.name}
-                    onChange={(e) => setTransaction({ ...transaction, name: e.target.value })}
+                    onChange={(e) => setTransaction({...transaction, name: e.target.value})}
                 />
             </div>
             <div>
@@ -62,13 +83,13 @@ export default function TransactionEditor() {
                     id="amount"
                     placeholder="금액을 입력하세요"
                     value={transaction.amount}
-                    onChange={(e) => setTransaction({ ...transaction, amount: e.target.value })}
+                    onChange={(e) => setTransaction({...transaction, amount: e.target.value})}
                 />
             </div>
             <div>
                 <div className="description">카테고리</div>
                 <select
-                    onChange={(e) => setTransaction({ ...transaction, category: e.target.value })}
+                    onChange={(e) => setTransaction({...transaction, category: e.target.value})}
                 >
                     {categories.map((category) => (
                         <option key={category} value={category}>
@@ -83,7 +104,7 @@ export default function TransactionEditor() {
                     type="date"
                     id="date"
                     value={transaction.date}
-                    onChange={(e) => setTransaction({ ...transaction, date: e.target.value })}
+                    onChange={(e) => setTransaction({...transaction, date: e.target.value})}
                 />
             </div>
             <div className="button_container">

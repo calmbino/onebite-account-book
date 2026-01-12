@@ -94,6 +94,18 @@
     gap: 10px;
 }
 
+/*.TransactionItem .edit_button,*/
+/*.delete_button {*/
+/*    width: 50px;*/
+/*    font-size: 14px;*/
+/*    text-align: right;*/
+/*    background-color: #141625;*/
+/*    padding: 10px 5px;*/
+/*    text-align: center;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*}*/
+
 .TransactionItem .edit_button,
 .delete_button {
     width: 50px;
@@ -104,4 +116,7 @@
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
 }
