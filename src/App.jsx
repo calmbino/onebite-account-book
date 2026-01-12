@@ -75,7 +75,7 @@ function App() {
 
     const onDeleteTransaction = (id) => {
         // 기존 아이템을 삭제하는 함수
-        dispatch({type: "DELETE", payload: id});
+        dispatch({type: "DELETE", payload: {id}});
     };
 
     return (
