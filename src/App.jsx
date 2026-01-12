@@ -75,7 +75,7 @@ function App() {
 
     const onDeleteTransaction = (id) => {
         // 기존 아이템을 삭제하는 함수
-        dispatch({type: "DELETE", payload: id});
+        dispatch({type: "DELETE", payload: {id}});
     };
 
     return (
@@ -85,7 +85,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/new-transaction" element={<NewTransaction/>}/>
-                    <Route path="/edit-transaction" element={<EditTransaction/>}/>
+                    <Route path="/edit-transaction/:id" element={<EditTransaction/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </TransactionDispatchContext.Provider>
