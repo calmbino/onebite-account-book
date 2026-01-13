@@ -2,7 +2,7 @@ import "./Home.css";
 import {useContext} from "react";
 import {TransactionStateContext} from "../App";
 import TransactionItem from "../components/TransactionItem";
-import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router";
 
 export default function Home() {
     const transactions = useContext(TransactionStateContext);

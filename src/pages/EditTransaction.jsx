@@ -2,7 +2,7 @@ import {useContext} from "react";
 import TransactionEditor from "../components/TransactionEditor";
 import "./EditTransaction.css";
 import {TransactionStateContext} from "../App";
-import {useParams} from "react-router-dom";
+import {useParams} from "react-router";
 import NotFound from "./NotFound";
 
 function EditTransaction() {

@@ -3,7 +3,7 @@ import Home from './pages/Home'
 import NewTransaction from "./pages/NewTransaction";
 import EditTransaction from "./pages/EditTransaction";
 import NotFound from "./pages/NotFound";
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes} from 'react-router'
 import {createContext, useReducer, useRef} from "react";
 
 const mockData = [

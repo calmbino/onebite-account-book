@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import {TransactionDispatchContext} from "../App";
 import "./TransactionEditor.css";
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router";
 
 const categories = ["🍚 식비", "💧 구독", "🏠 생활", "🏢 급여", "💰 금융"];
 
