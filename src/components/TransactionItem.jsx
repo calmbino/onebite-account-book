@@ -1,5 +1,5 @@
 import "./TransactionItem.css";
-import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router";
 import {useContext} from "react";
 import {TransactionDispatchContext} from "../App";
 
